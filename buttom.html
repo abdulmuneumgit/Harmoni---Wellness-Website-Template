@@ -1,0 +1,61 @@
+<html>
+  <style>
+    @font-face {
+      font-family: aventa-custom;
+      src: url(/Aventa-Regular.ttf);
+    }
+
+    #storeWrapper {
+      display: flex;
+      justify-content: center; /* Optional: center the button */
+      align-items: center; /* Optional: vertically center if needed */
+      width: auto;
+    }
+
+    #storeButton {
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 100px;
+      line-height: 16px;
+      background-color: white;
+      color: #010102;
+      border: 1px solid #020ce3;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-family: "aventa-custom";
+    }
+
+    #storeButton:hover {
+      background-color: #020ce3;
+      color: white;
+      border: 1px solid white;
+    }
+  </style>
+  <body>
+    <div id="storeWrapper">
+      <button id="storeButton">Download the app</button>
+    </div>
+
+    <script>
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      console.log(userAgent);
+      let url = "https://cencepay.com/"; // Default URL in case device type can't be determined.
+
+      // Check if the user is on Android
+      if (/android/i.test(userAgent)) {
+        url =
+          "https://play.google.com/store/apps/details?id=com.cencepay&hl=en"; // Google Play Store URL
+      }
+      // Check if the user is on iOS
+      else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        url = "https://apps.apple.com/ae/app/cence/id6739706195"; // Apple App Store URL
+      }
+
+      // Add event listener to the button
+      document.getElementById("storeButton").addEventListener("click", () => {
+        window.open(url, "_blank"); // Open the appropriate store URL in a new tab
+      });
+    </script>
+  </body>
+</html>
